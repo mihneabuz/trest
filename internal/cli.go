@@ -17,7 +17,10 @@ func getCommands() []command {
 		{
 			name: "post",
 			exec: func(args []string) {
-				fmt.Printf("POST: [%s] [type: %s] [body: %s]\n", args[0], args[1], args[2])
+				if len(args) < 3 {
+					args = append(args, "")
+				}
+				fmt.Printf("POST: [%s] [body: %s]\n", args[0], args[1])
 				res := Post(args)
 				fmt.Println(res)
 			},
@@ -51,6 +54,7 @@ func StartCli() {
 		for _, cmd := range commands {
 			if s[0] == cmd.name {
 				cmd.exec(s[1:])
+				fmt.Println()
 				break
 			}
 		}
