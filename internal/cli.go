@@ -57,12 +57,18 @@ func StartCli() {
 	commands := getCommands()
 
 	prompt := func() { fmt.Print(">>> ") }
-	scanner := bufio.NewScanner(os.Stdin)
 	prompt()
+
+	var last string
+	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		s := scanner.Text()
 		for len(s) > 0 && s[0] == ' ' {
 			s = s[1:]
+		}
+
+		if strings.HasPrefix(s, "repeat") {
+			s = last
 		}
 
 		split := strings.Split(s, " ")
@@ -75,6 +81,7 @@ func StartCli() {
 			}
 		}
 
+		last = s
 		prompt()
 	}
 
