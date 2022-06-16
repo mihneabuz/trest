@@ -8,12 +8,16 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("USAGE: trest [cli/tui]")
+		fmt.Println("USAGE: trest [cli/icli/tui]")
 		return
 	}
 
 	if os.Args[1] == "cli" {
 		internal.StartCli()
+	}
+
+	if os.Args[1] == "icli" {
+		internal.StartIcli()
 	}
 
 	if os.Args[1] == "tui" {
