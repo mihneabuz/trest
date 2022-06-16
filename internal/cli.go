@@ -48,12 +48,18 @@ func getCommands() []command {
 			name: "exit",
 			exec: func(_ []string) { os.Exit(0) },
 		},
+		{
+			name: "quit",
+			exec: func(_ []string) { os.Exit(0) },
+		},
 	}
 
 	return commands
 }
 
 func StartCli() {
+	fmt.Println("trest - test your http endpoints")
+
 	commands := getCommands()
 
 	prompt := func() { fmt.Print(">>> ") }
