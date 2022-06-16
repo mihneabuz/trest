@@ -8,7 +8,7 @@ import (
 )
 
 func testGet(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte("Working"))
+	w.Write([]byte("Get Working"))
 }
 
 func testString(w http.ResponseWriter, req *http.Request) {
@@ -21,7 +21,6 @@ func testString(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("--> String: [%s]\n", string(bodyBytes))
 	w.Write([]byte("OK"))
 }
-
 
 func testJson(w http.ResponseWriter, req *http.Request) {
 	bodyBytes, err := ioutil.ReadAll(req.Body)
@@ -41,11 +40,17 @@ func testJson(w http.ResponseWriter, req *http.Request) {
 	w.Write([]byte("OK"))
 }
 
+func testDelete(w http.ResponseWriter, req *http.Request) {
+	w.Write([]byte("Delete Working"))
+}
+
 func main() {
 	http.HandleFunc("/testGet", testGet)
 
 	http.HandleFunc("/testString", testString)
 	http.HandleFunc("/testJson", testJson)
+
+	http.HandleFunc("/testDelete", testDelete)
 
 	http.ListenAndServe(":3000", nil)
 }

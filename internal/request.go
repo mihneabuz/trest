@@ -23,6 +23,22 @@ func parseResponse(resp *http.Response) string {
 	return res
 }
 
+func Delete(args []string) string {
+	req, err := http.NewRequest("DELETE", args[0], nil)
+	if err != nil {
+		return err.Error()
+	}
+
+	client := http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return err.Error()
+	}
+	defer resp.Body.Close()
+
+	return parseResponse(resp)
+}
+
 func Post(args []string) string {
 	data := bytes.NewBuffer([]byte(args[1]))
 
