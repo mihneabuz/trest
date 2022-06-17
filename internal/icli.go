@@ -73,10 +73,6 @@ func StartIcli() {
 	var history [][]byte
 	history_idx := -1
 	for {
-		fmt.Print(len(history))
-		for _, b := range history {
-			fmt.Println(string(b))
-		}
 		printLine(buffer)
 		c, _ := reader.ReadByte()
 
@@ -91,20 +87,12 @@ func StartIcli() {
 					if history_idx == -1 {
 						history_idx = len(history) - 1
 
-						fmt.Println("====")
-						fmt.Print(history_idx)
-						fmt.Println("====")
-
 						if history_idx >= 0 {
 							buffer = history[history_idx]
 						}
 					} else {
 						if history_idx > 1 {
 							history_idx -= 1
-
-							fmt.Println("====")
-							fmt.Print(history_idx)
-							fmt.Println("====")
 
 							buffer = history[history_idx]
 						}
